@@ -9,6 +9,7 @@ public class ProductDTO {
     private int discount;
     @JsonProperty("sale_price")
     private double salePrice;
+    private int quantity;
 
     public String getId() {
         return id;
@@ -48,5 +49,13 @@ public class ProductDTO {
 
     public void setSalePrice(double salePrice) {
         this.salePrice = salePrice;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
