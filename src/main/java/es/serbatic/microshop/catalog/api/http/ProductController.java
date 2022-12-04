@@ -24,6 +24,8 @@ public class ProductController {
             productDTO.setId(product.getId());
             productDTO.setName(product.getName());
             productDTO.setPrice(product.getPrice());
+            productDTO.setDiscount(product.getDiscount());
+            productDTO.setSalePrice(product.getSalePrice());
             response.add(productDTO);
         }
         return response;

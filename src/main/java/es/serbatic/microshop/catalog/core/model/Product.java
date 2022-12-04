@@ -5,6 +5,7 @@ public class Product {
     private final String model;
     private String name;
     private double price;
+    private int discount;
 
     public Product(String type, String model) {
         this.type = type;
@@ -37,5 +38,17 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
+    }
+
+    public double getSalePrice() {
+        return price * (1 - (double)discount/100);
     }
 }

@@ -1,9 +1,14 @@
 package es.serbatic.microshop.catalog.api.http.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class ProductDTO {
     private String id;
     private String name;
     private double price;
+    private int discount;
+    @JsonProperty("sale_price")
+    private double salePrice;
 
     public String getId() {
         return id;
@@ -27,5 +32,21 @@ public class ProductDTO {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
+    }
+
+    public double getSalePrice() {
+        return salePrice;
+    }
+
+    public void setSalePrice(double salePrice) {
+        this.salePrice = salePrice;
     }
 }

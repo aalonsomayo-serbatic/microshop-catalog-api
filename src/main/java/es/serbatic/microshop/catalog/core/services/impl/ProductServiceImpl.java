@@ -3,10 +3,12 @@ package es.serbatic.microshop.catalog.core.services.impl;
 import es.serbatic.microshop.catalog.core.model.Product;
 import es.serbatic.microshop.catalog.core.services.ProductService;
 import es.serbatic.microshop.catalog.repository.db.ProductRepository;
+import es.serbatic.microshop.catalog.repository.db.ProductTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -15,12 +17,21 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private ProductTypeRepository productTypeRepository;
+
     public List<Product> findAll() {
+        var discounts = new HashMap<String, Integer>();
+        for (var discount: productTypeRepository.findAll()) {
+            discounts.put(discount.getType(), discount.getDiscount());
+        }
+
         var result = new ArrayList<Product>();
         for (var entity: productRepository.findAll()) {
             var product = new Product(entity.getType(), entity.getModel());
             product.setName(entity.getName());
             product.setPrice(entity.getPrice());
+            product.setDiscount(discounts.getOrDefault(entity.getType(), 0));
             result.add(product);
         }
         return result;
